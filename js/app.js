@@ -461,3 +461,17 @@ function initPing() {
   btn.addEventListener('click', run);
   input.addEventListener('keydown', e => { if (e.key === 'Enter') run(); });
 }
+
+// ===== Copy Email =====
+function copyEmail(email, el) {
+  navigator.clipboard.writeText(email).then(() => {
+    const originalText = el.textContent;
+    const copiedText = I18n.getCurrentLang() === 'zh' ? '已复制 ✓' : 'Copied ✓';
+    el.textContent = copiedText;
+    el.classList.add('copied');
+    setTimeout(() => {
+      el.textContent = originalText;
+      el.classList.remove('copied');
+    }, 1500);
+  });
+}

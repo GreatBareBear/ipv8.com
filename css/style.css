@@ -559,14 +559,22 @@ body {
   color: var(--text-dim);
 }
 
-.about-contact a {
+.email-copy {
   color: var(--accent);
-  text-decoration: none;
-  transition: opacity 0.2s;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom: 1px dashed var(--accent);
+  padding-bottom: 1px;
 }
 
-.about-contact a:hover {
+.email-copy:hover {
   opacity: 0.8;
+  border-bottom-style: solid;
+}
+
+.email-copy.copied {
+  color: var(--success);
+  border-bottom-color: var(--success);
 }
 
 /* ===== Language Switch ===== */

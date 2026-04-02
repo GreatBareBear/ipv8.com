@@ -66,7 +66,7 @@
     "adsLabel": "Ads",
     "trackersLabel": "Trackers",
     "freeLabel": "Free",
-    "contact": "Domain For Sale · Inquiries: <a href=\"mailto:maogangxue@gmail.com\">maogangxue@gmail.com</a>"
+    "contact": "Domain For Sale · Inquiries: <span class=\"email-copy\" onclick=\"copyEmail('maogangxue@gmail.com', this)\">maogangxue@gmail.com</span>"
   },
   "footer": {
     "copy": "© 2026 ipv8.com — All tools run in your browser"
