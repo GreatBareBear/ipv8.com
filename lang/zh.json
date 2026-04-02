@@ -65,15 +65,11 @@
     "toolsLabel": "工具",
     "adsLabel": "广告",
     "trackersLabel": "追踪器",
-    "freeLabel": "免费"
+    "freeLabel": "免费",
+    "contact": "域名咨询：maogangxue@163.com"
   },
   "footer": {
     "copy": "© 2026 ipv8.com — 所有工具在您的浏览器中运行"
-  },
-  "domainSale": {
-    "title": "ipv8.com 域名出售",
-    "desc": "有意购买此优质域名？",
-    "contact": "联系：maogangxue@163.com"
   },
   "messages": {
     "pleaseEnterIP": "请输入IP地址",

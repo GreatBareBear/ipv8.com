@@ -65,15 +65,11 @@
     "toolsLabel": "Tools",
     "adsLabel": "Ads",
     "trackersLabel": "Trackers",
-    "freeLabel": "Free"
+    "freeLabel": "Free",
+    "contact": "Domain inquiry: maogangxue@163.com"
   },
   "footer": {
     "copy": "© 2026 ipv8.com — All tools run in your browser"
-  },
-  "domainSale": {
-    "title": "ipv8.com Domain For Sale",
-    "desc": "Interested in acquiring this premium domain?",
-    "contact": "Contact: maogangxue@163.com"
   },
   "messages": {
     "pleaseEnterIP": "Please enter an IP address",
