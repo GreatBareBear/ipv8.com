@@ -70,10 +70,10 @@
   "footer": {
     "copy": "© 2026 ipv8.com — 所有工具在您的浏览器中运行"
   },
-  "banner": {
-    "domainSale": "🌐 ipv8.com 域名出售",
-    "inquire": "联系咨询",
-    "close": "关闭"
+  "domainSale": {
+    "title": "ipv8.com 域名出售",
+    "desc": "有意购买此优质域名？",
+    "contact": "联系：maogangxue@163.com"
   },
   "messages": {
     "pleaseEnterIP": "请输入IP地址",

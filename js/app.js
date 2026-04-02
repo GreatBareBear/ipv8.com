@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Initialize all modules
   initNav();
-  initBanner();
   initHeroIP();
   initLookup();
   initSubnet();
@@ -15,28 +14,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   initPorts();
   initPing();
 });
-
-// ===== Domain Sale Banner =====
-function initBanner() {
-  const banner = document.getElementById('domainBanner');
-  const closeBtn = document.getElementById('bannerClose');
-  const BANNER_KEY = 'ipv8-banner-closed';
-
-  // Check if banner was closed recently (24 hours)
-  const closedTime = localStorage.getItem(BANNER_KEY);
-  if (closedTime) {
-    const elapsed = Date.now() - parseInt(closedTime, 10);
-    if (elapsed < 24 * 60 * 60 * 1000) {
-      banner.style.display = 'none';
-      return;
-    }
-  }
-
-  closeBtn.addEventListener('click', () => {
-    banner.style.display = 'none';
-    localStorage.setItem(BANNER_KEY, Date.now().toString());
-  });
-}
 
 // ===== Nav =====
 function initNav() {
