@@ -9,6 +9,15 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!-- Domain Sale Banner -->
+  <div class="domain-banner" id="domainBanner">
+    <div class="banner-inner">
+      <span data-i18n="banner.domainSale">🌐 ipv8.com Domain For Sale</span>
+      <a href="mailto:maogangxue@163.com?subject=Domain%20Inquiry%3A%20ipv8.com" class="banner-btn" data-i18n="banner.inquire">Inquire Now</a>
+      <button class="banner-close" id="bannerClose" data-i18n-title="banner.close">×</button>
+    </div>
+  </div>
+
   <!-- Navigation -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
@@ -17,8 +26,9 @@
         <span class="logo-text">ipv<span class="accent">8</span></span>
       </a>
       <div class="nav-links" id="navLinks">
-        <a href="#tools" class="nav-link">Tools</a>
-        <a href="#about" class="nav-link">About</a>
+        <a href="#tools" class="nav-link" data-i18n="nav.tools">Tools</a>
+        <a href="#about" class="nav-link" data-i18n="nav.about">About</a>
+        <button class="lang-switch" id="langSwitch" data-i18n="nav.lang">中</button>
       </div>
       <button class="menu-toggle" id="menuToggle" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -32,18 +42,18 @@
       <div class="grid-overlay"></div>
     </div>
     <div class="hero-content">
-      <div class="hero-badge">Free IP Tools</div>
-      <h1>Your IP Address</h1>
+      <div class="hero-badge" data-i18n="hero.badge">Free IP Tools</div>
+      <h1 data-i18n="hero.title">Your IP Address</h1>
       <div class="ip-display" id="ipDisplay">
-        <span class="ip-value" id="ipValue">Detecting...</span>
+        <span class="ip-value" id="ipValue" data-i18n="hero.detecting">Detecting...</span>
         <button class="copy-btn" id="copyIp" title="Copy IP">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
         </button>
       </div>
       <div class="ip-details" id="ipDetails">
-        <div class="detail-item"><span class="detail-label">Location</span><span class="detail-value" id="detailLocation">—</span></div>
-        <div class="detail-item"><span class="detail-label">ISP</span><span class="detail-value" id="detailISP">—</span></div>
-        <div class="detail-item"><span class="detail-label">Country</span><span class="detail-value" id="detailCountry">—</span></div>
+        <div class="detail-item"><span class="detail-label" data-i18n="hero.location">Location</span><span class="detail-value" id="detailLocation">—</span></div>
+        <div class="detail-item"><span class="detail-label" data-i18n="hero.isp">ISP</span><span class="detail-value" id="detailISP">—</span></div>
+        <div class="detail-item"><span class="detail-label" data-i18n="hero.country">Country</span><span class="detail-value" id="detailCountry">—</span></div>
       </div>
     </div>
   </section>
@@ -51,8 +61,8 @@
   <!-- Tools Grid -->
   <section class="tools" id="tools">
     <div class="section-header">
-      <h2>Network Tools</h2>
-      <p>Essential utilities for network engineers and developers</p>
+      <h2 data-i18n="tools.title">Network Tools</h2>
+      <p data-i18n="tools.subtitle">Essential utilities for network engineers and developers</p>
     </div>
 
     <div class="tools-grid">
@@ -60,12 +70,12 @@
       <!-- IP Lookup -->
       <div class="tool-card" id="tool-lookup">
         <div class="tool-icon">🔍</div>
-        <h3>IP Lookup</h3>
-        <p class="tool-desc">Get geolocation, ISP and network info for any IP address</p>
+        <h3 data-i18n="tools.ipLookup.title">IP Lookup</h3>
+        <p class="tool-desc" data-i18n="tools.ipLookup.desc">Get geolocation, ISP and network info for any IP address</p>
         <div class="tool-body">
           <div class="input-group">
-            <input type="text" id="lookupInput" placeholder="e.g. 8.8.8.8" autocomplete="off">
-            <button class="btn" id="lookupBtn">Lookup</button>
+            <input type="text" id="lookupInput" data-i18n-placeholder="tools.ipLookup.placeholder" placeholder="e.g. 8.8.8.8" autocomplete="off">
+            <button class="btn" id="lookupBtn" data-i18n="tools.ipLookup.btn">Lookup</button>
           </div>
           <div class="result-box" id="lookupResult"></div>
         </div>
@@ -74,12 +84,12 @@
       <!-- Subnet Calculator -->
       <div class="tool-card" id="tool-subnet">
         <div class="tool-icon">🧮</div>
-        <h3>Subnet Calculator</h3>
-        <p class="tool-desc">Calculate network address, broadcast, host range and more</p>
+        <h3 data-i18n="tools.subnet.title">Subnet Calculator</h3>
+        <p class="tool-desc" data-i18n="tools.subnet.desc">Calculate network address, broadcast, host range and more</p>
         <div class="tool-body">
           <div class="input-group">
-            <input type="text" id="subnetInput" placeholder="e.g. 192.168.1.0/24" autocomplete="off">
-            <button class="btn" id="subnetBtn">Calculate</button>
+            <input type="text" id="subnetInput" data-i18n-placeholder="tools.subnet.placeholder" placeholder="e.g. 192.168.1.0/24" autocomplete="off">
+            <button class="btn" id="subnetBtn" data-i18n="tools.subnet.btn">Calculate</button>
           </div>
           <div class="result-box" id="subnetResult"></div>
         </div>
@@ -88,12 +98,12 @@
       <!-- IP Converter -->
       <div class="tool-card" id="tool-convert">
         <div class="tool-icon">🔄</div>
-        <h3>IP Converter</h3>
-        <p class="tool-desc">Convert between decimal, binary, hexadecimal representations</p>
+        <h3 data-i18n="tools.converter.title">IP Converter</h3>
+        <p class="tool-desc" data-i18n="tools.converter.desc">Convert between decimal, binary, hexadecimal representations</p>
         <div class="tool-body">
           <div class="input-group">
-            <input type="text" id="convertInput" placeholder="e.g. 192.168.1.1" autocomplete="off">
-            <button class="btn" id="convertBtn">Convert</button>
+            <input type="text" id="convertInput" data-i18n-placeholder="tools.converter.placeholder" placeholder="e.g. 192.168.1.1" autocomplete="off">
+            <button class="btn" id="convertBtn" data-i18n="tools.converter.btn">Convert</button>
           </div>
           <div class="result-box" id="convertResult"></div>
         </div>
@@ -102,12 +112,12 @@
       <!-- CIDR Calculator -->
       <div class="tool-card" id="tool-cidr">
         <div class="tool-icon">📐</div>
-        <h3>CIDR Range</h3>
-        <p class="tool-desc">List all IPs in a CIDR range or find overlap between ranges</p>
+        <h3 data-i18n="tools.cidr.title">CIDR Range</h3>
+        <p class="tool-desc" data-i18n="tools.cidr.desc">List all IPs in a CIDR range or find overlap between ranges</p>
         <div class="tool-body">
           <div class="input-group">
-            <input type="text" id="cidrInput" placeholder="e.g. 10.0.0.0/30" autocomplete="off">
-            <button class="btn" id="cidrBtn">Expand</button>
+            <input type="text" id="cidrInput" data-i18n-placeholder="tools.cidr.placeholder" placeholder="e.g. 10.0.0.0/30" autocomplete="off">
+            <button class="btn" id="cidrBtn" data-i18n="tools.cidr.btn">Expand</button>
           </div>
           <div class="result-box" id="cidrResult"></div>
         </div>
@@ -116,12 +126,12 @@
       <!-- Port Reference -->
       <div class="tool-card" id="tool-ports">
         <div class="tool-icon">🔌</div>
-        <h3>Port Lookup</h3>
-        <p class="tool-desc">Search common network ports and their services</p>
+        <h3 data-i18n="tools.port.title">Port Lookup</h3>
+        <p class="tool-desc" data-i18n="tools.port.desc">Search common network ports and their services</p>
         <div class="tool-body">
           <div class="input-group">
-            <input type="text" id="portInput" placeholder="e.g. 443 or SSH" autocomplete="off">
-            <button class="btn" id="portBtn">Search</button>
+            <input type="text" id="portInput" data-i18n-placeholder="tools.port.placeholder" placeholder="e.g. 443 or SSH" autocomplete="off">
+            <button class="btn" id="portBtn" data-i18n="tools.port.btn">Search</button>
           </div>
           <div class="result-box" id="portResult"></div>
         </div>
@@ -130,12 +140,12 @@
       <!-- Ping / Latency -->
       <div class="tool-card" id="tool-ping">
         <div class="tool-icon">📡</div>
-        <h3>HTTP Latency</h3>
-        <p class="tool-desc">Measure HTTP response time from your browser to any URL</p>
+        <h3 data-i18n="tools.latency.title">HTTP Latency</h3>
+        <p class="tool-desc" data-i18n="tools.latency.desc">Measure HTTP response time from your browser to any URL</p>
         <div class="tool-body">
           <div class="input-group">
-            <input type="text" id="pingInput" placeholder="e.g. google.com" autocomplete="off">
-            <button class="btn" id="pingBtn">Test</button>
+            <input type="text" id="pingInput" data-i18n-placeholder="tools.latency.placeholder" placeholder="e.g. google.com" autocomplete="off">
+            <button class="btn" id="pingBtn" data-i18n="tools.latency.btn">Test</button>
           </div>
           <div class="result-box" id="pingResult"></div>
         </div>
@@ -147,13 +157,13 @@
   <!-- About -->
   <section class="about" id="about">
     <div class="about-content">
-      <h2>About <span class="accent">ipv8</span></h2>
-      <p>Free, fast, and privacy-respecting network tools. No tracking, no ads, no signup. Built for engineers who just need things to work.</p>
+      <h2><span data-i18n="about.title_prefix">About</span> <span class="accent">ipv8</span></h2>
+      <p data-i18n="about.desc">Free, fast, and privacy-respecting network tools. No tracking, no ads, no signup. Built for engineers who just need things to work.</p>
       <div class="about-stats">
-        <div class="stat"><span class="stat-num">6</span><span class="stat-label">Tools</span></div>
-        <div class="stat"><span class="stat-num">0</span><span class="stat-label">Ads</span></div>
-        <div class="stat"><span class="stat-num">0</span><span class="stat-label">Trackers</span></div>
-        <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Free</span></div>
+        <div class="stat"><span class="stat-num">6</span><span class="stat-label" data-i18n="about.toolsLabel">Tools</span></div>
+        <div class="stat"><span class="stat-num">0</span><span class="stat-label" data-i18n="about.adsLabel">Ads</span></div>
+        <div class="stat"><span class="stat-num">0</span><span class="stat-label" data-i18n="about.trackersLabel">Trackers</span></div>
+        <div class="stat"><span class="stat-num">∞</span><span class="stat-label" data-i18n="about.freeLabel">Free</span></div>
       </div>
     </div>
   </section>
@@ -162,10 +172,11 @@
   <footer class="footer">
     <div class="footer-inner">
       <span class="logo-text footer-logo">ipv<span class="accent">8</span></span>
-      <span class="footer-copy">&copy; 2026 ipv8.com — All tools run in your browser</span>
+      <span class="footer-copy" data-i18n="footer.copy">© 2026 ipv8.com — All tools run in your browser</span>
     </div>
   </footer>
 
+  <script src="js/i18n.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

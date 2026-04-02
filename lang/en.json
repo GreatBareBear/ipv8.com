@@ -1,0 +1,134 @@
+{
+  "meta": {
+    "title": "ipv8 — IP Tools & Utilities",
+    "description": "Free online IP tools: IP lookup, subnet calculator, IPv4/IPv6 converter, binary/hex converter, port reference and more."
+  },
+  "nav": {
+    "tools": "Tools",
+    "about": "About",
+    "lang": "中"
+  },
+  "hero": {
+    "badge": "Free IP Tools",
+    "title": "Your IP Address",
+    "detecting": "Detecting...",
+    "unknown": "Unknown",
+    "unableDetect": "Unable to detect",
+    "location": "Location",
+    "isp": "ISP",
+    "country": "Country",
+    "copySuccess": "Copied"
+  },
+  "tools": {
+    "title": "Network Tools",
+    "subtitle": "Essential utilities for network engineers and developers",
+    "ipLookup": {
+      "title": "IP Lookup",
+      "desc": "Get geolocation, ISP and network info for any IP address",
+      "placeholder": "e.g. 8.8.8.8",
+      "btn": "Lookup"
+    },
+    "subnet": {
+      "title": "Subnet Calculator",
+      "desc": "Calculate network address, broadcast, host range and more",
+      "placeholder": "e.g. 192.168.1.0/24",
+      "btn": "Calculate"
+    },
+    "converter": {
+      "title": "IP Converter",
+      "desc": "Convert between decimal, binary, hexadecimal representations",
+      "placeholder": "e.g. 192.168.1.1",
+      "btn": "Convert"
+    },
+    "cidr": {
+      "title": "CIDR Range",
+      "desc": "List all IPs in a CIDR range or find overlap between ranges",
+      "placeholder": "e.g. 10.0.0.0/30",
+      "btn": "Expand"
+    },
+    "port": {
+      "title": "Port Lookup",
+      "desc": "Search common network ports and their services",
+      "placeholder": "e.g. 443 or SSH",
+      "btn": "Search"
+    },
+    "latency": {
+      "title": "HTTP Latency",
+      "desc": "Measure HTTP response time from your browser to any URL",
+      "placeholder": "e.g. google.com",
+      "btn": "Test"
+    }
+  },
+  "about": {
+    "title_prefix": "About",
+    "desc": "Free, fast, and privacy-respecting network tools. No tracking, no ads, no signup. Built for engineers who just need things to work.",
+    "toolsLabel": "Tools",
+    "adsLabel": "Ads",
+    "trackersLabel": "Trackers",
+    "freeLabel": "Free"
+  },
+  "footer": {
+    "copy": "© 2026 ipv8.com — All tools run in your browser"
+  },
+  "banner": {
+    "domainSale": "🌐 ipv8.com Domain For Sale",
+    "inquire": "Inquire Now",
+    "close": "Close"
+  },
+  "messages": {
+    "pleaseEnterIP": "Please enter an IP address",
+    "invalidIPv4": "Invalid IPv4 address",
+    "querying": "Querying...",
+    "requestFailed": "Request failed. Try again.",
+    "formatSubnet": "Format: 192.168.1.0/24",
+    "formatCIDR": "Format: 10.0.0.0/30",
+    "rangeSupported": "Supported range: /24 to /32",
+    "tooManyIPs": " IPs — too many to list. Use /25 or smaller.",
+    "enterPort": "Enter a port number or service name",
+    "noMatches": "No matches found",
+    "enterDomain": "Enter a domain or URL",
+    "allRequestsFailed": "All requests failed. Check the URL.",
+    "httpLatencyNote": "⚠ HTTP latency (includes server response), not ICMP ping",
+    "testing": "Testing...",
+    "failed": "Failed",
+    "round": "Round",
+    "min": "Min",
+    "avg": "Avg",
+    "max": "Max",
+    "firstLastShown": "First & last shown (",
+    "total": " total)"
+  },
+  "resultLabels": {
+    "ip": "IP",
+    "country": "Country",
+    "region": "Region",
+    "city": "City",
+    "postal": "Postal",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "timezone": "Timezone",
+    "ispOrg": "ISP / Org",
+    "asn": "ASN",
+    "cidrNotation": "CIDR Notation",
+    "subnetMask": "Subnet Mask",
+    "wildcardMask": "Wildcard Mask",
+    "networkAddress": "Network Address",
+    "broadcastAddress": "Broadcast Address",
+    "firstHost": "First Host",
+    "lastHost": "Last Host",
+    "totalHosts": "Total Hosts",
+    "usableHosts": "Usable Hosts",
+    "ipClass": "IP Class",
+    "binaryMask": "Binary Mask",
+    "dottedDecimal": "Dotted Decimal",
+    "decimal32": "Decimal (32-bit)",
+    "hexadecimal": "Hexadecimal",
+    "octal": "Octal",
+    "binary": "Binary",
+    "hexBytes": "Hex Bytes",
+    "reverseDNS": "Reverse DNS",
+    "type": "Type",
+    "range": "Range",
+    "count": "Count"
+  }
+}

@@ -1,7 +1,12 @@
 // ===== ipv8.com — IP Tools =====
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  // Initialize i18n first
+  await I18n.init();
+
+  // Initialize all modules
   initNav();
+  initBanner();
   initHeroIP();
   initLookup();
   initSubnet();
@@ -10,6 +15,28 @@ document.addEventListener('DOMContentLoaded', () => {
   initPorts();
   initPing();
 });
+
+// ===== Domain Sale Banner =====
+function initBanner() {
+  const banner = document.getElementById('domainBanner');
+  const closeBtn = document.getElementById('bannerClose');
+  const BANNER_KEY = 'ipv8-banner-closed';
+
+  // Check if banner was closed recently (24 hours)
+  const closedTime = localStorage.getItem(BANNER_KEY);
+  if (closedTime) {
+    const elapsed = Date.now() - parseInt(closedTime, 10);
+    if (elapsed < 24 * 60 * 60 * 1000) {
+      banner.style.display = 'none';
+      return;
+    }
+  }
+
+  closeBtn.addEventListener('click', () => {
+    banner.style.display = 'none';
+    localStorage.setItem(BANNER_KEY, Date.now().toString());
+  });
+}
 
 // ===== Nav =====
 function initNav() {
@@ -32,7 +59,7 @@ async function initHeroIP() {
   try {
     const res = await fetch('https://ipapi.co/json/');
     const d = await res.json();
-    ipEl.textContent = d.ip || 'Unknown';
+    ipEl.textContent = d.ip || I18n.t('hero.unknown', 'Unknown');
     locEl.textContent = [d.city, d.region].filter(Boolean).join(', ') || '—';
     ispEl.textContent = d.org || '—';
     countryEl.textContent = d.country_name || '—';
@@ -44,9 +71,9 @@ async function initHeroIP() {
     try {
       const res2 = await fetch('https://api.ipify.org?format=json');
       const d2 = await res2.json();
-      ipEl.textContent = d2.ip || 'Unknown';
+      ipEl.textContent = d2.ip || I18n.t('hero.unknown', 'Unknown');
     } catch {
-      ipEl.textContent = 'Unable to detect';
+      ipEl.textContent = I18n.t('hero.unableDetect', 'Unable to detect');
     }
   }
 
@@ -110,10 +137,10 @@ function initLookup() {
 
   const run = async () => {
     const ip = input.value.trim();
-    if (!ip) { showError('lookupResult', 'Please enter an IP address'); return; }
-    if (!isValidIPv4(ip)) { showError('lookupResult', 'Invalid IPv4 address'); return; }
+    if (!ip) { showError('lookupResult', I18n.t('messages.pleaseEnterIP')); return; }
+    if (!isValidIPv4(ip)) { showError('lookupResult', I18n.t('messages.invalidIPv4')); return; }
 
-    showResult('lookupResult', '<div class="spinner"></div> Querying...');
+    showResult('lookupResult', `<div class="spinner"></div> ${I18n.t('messages.querying')}`);
     btn.disabled = true;
 
     try {
@@ -121,19 +148,19 @@ function initLookup() {
       const d = await res.json();
       if (d.error) { showError('lookupResult', d.reason || 'Lookup failed'); return; }
       showRows('lookupResult', [
-        ['IP', d.ip, true],
-        ['Country', `${d.country_name || ''} (${d.country || ''})`],
-        ['Region', d.region || '—'],
-        ['City', d.city || '—'],
-        ['Postal', d.postal || '—'],
-        ['Latitude', d.latitude || '—'],
-        ['Longitude', d.longitude || '—'],
-        ['Timezone', d.timezone || '—'],
-        ['ISP / Org', d.org || '—'],
-        ['ASN', d.asn || '—'],
+        [I18n.t('resultLabels.ip', 'IP'), d.ip, true],
+        [I18n.t('resultLabels.country', 'Country'), `${d.country_name || ''} (${d.country || ''})`],
+        [I18n.t('resultLabels.region', 'Region'), d.region || '—'],
+        [I18n.t('resultLabels.city', 'City'), d.city || '—'],
+        [I18n.t('resultLabels.postal', 'Postal'), d.postal || '—'],
+        [I18n.t('resultLabels.latitude', 'Latitude'), d.latitude || '—'],
+        [I18n.t('resultLabels.longitude', 'Longitude'), d.longitude || '—'],
+        [I18n.t('resultLabels.timezone', 'Timezone'), d.timezone || '—'],
+        [I18n.t('resultLabels.ispOrg', 'ISP / Org'), d.org || '—'],
+        [I18n.t('resultLabels.asn', 'ASN'), d.asn || '—'],
       ]);
     } catch (e) {
-      showError('lookupResult', 'Request failed. Try again.');
+      showError('lookupResult', I18n.t('messages.requestFailed'));
     } finally {
       btn.disabled = false;
     }
@@ -161,7 +188,7 @@ function initSubnet() {
 
     prefix = parseInt(prefix, 10);
     if (!isValidIPv4(ip) || isNaN(prefix) || prefix < 0 || prefix > 32) {
-      showError('subnetResult', 'Format: 192.168.1.0/24');
+      showError('subnetResult', I18n.t('messages.formatSubnet'));
       return;
     }
 
@@ -176,17 +203,17 @@ function initSubnet() {
     const lastHost = totalHosts > 2 ? broadcast - 1 : broadcast;
 
     showRows('subnetResult', [
-      ['CIDR Notation', `${longToIp(network)}/${prefix}`, true],
-      ['Subnet Mask', longToIp(mask)],
-      ['Wildcard Mask', longToIp(~mask >>> 0)],
-      ['Network Address', longToIp(network)],
-      ['Broadcast Address', longToIp(broadcast)],
-      ['First Host', longToIp(firstHost)],
-      ['Last Host', longToIp(lastHost)],
-      ['Total Hosts', totalHosts.toLocaleString()],
-      ['Usable Hosts', usableHosts.toLocaleString()],
-      ['IP Class', getIPClass(ip)],
-      ['Binary Mask', toBin(mask >>> 24) + '.' + toBin((mask >>> 16) & 255) + '.' + toBin((mask >>> 8) & 255) + '.' + toBin(mask & 255)],
+      [I18n.t('resultLabels.cidrNotation', 'CIDR Notation'), `${longToIp(network)}/${prefix}`, true],
+      [I18n.t('resultLabels.subnetMask', 'Subnet Mask'), longToIp(mask)],
+      [I18n.t('resultLabels.wildcardMask', 'Wildcard Mask'), longToIp(~mask >>> 0)],
+      [I18n.t('resultLabels.networkAddress', 'Network Address'), longToIp(network)],
+      [I18n.t('resultLabels.broadcastAddress', 'Broadcast Address'), longToIp(broadcast)],
+      [I18n.t('resultLabels.firstHost', 'First Host'), longToIp(firstHost)],
+      [I18n.t('resultLabels.lastHost', 'Last Host'), longToIp(lastHost)],
+      [I18n.t('resultLabels.totalHosts', 'Total Hosts'), totalHosts.toLocaleString()],
+      [I18n.t('resultLabels.usableHosts', 'Usable Hosts'), usableHosts.toLocaleString()],
+      [I18n.t('resultLabels.ipClass', 'IP Class'), getIPClass(ip)],
+      [I18n.t('resultLabels.binaryMask', 'Binary Mask'), toBin(mask >>> 24) + '.' + toBin((mask >>> 16) & 255) + '.' + toBin((mask >>> 8) & 255) + '.' + toBin(mask & 255)],
     ]);
   };
 
@@ -211,7 +238,7 @@ function initConvert() {
   const run = () => {
     const ip = input.value.trim();
     if (!isValidIPv4(ip)) {
-      showError('convertResult', 'Invalid IPv4 address');
+      showError('convertResult', I18n.t('messages.invalidIPv4'));
       return;
     }
 
@@ -219,18 +246,18 @@ function initConvert() {
     const long = ipToLong(ip);
 
     const rows = [
-      ['Dotted Decimal', ip, true],
-      ['Decimal (32-bit)', long.toString()],
-      ['Hexadecimal', '0x' + long.toString(16).toUpperCase().padStart(8, '0')],
-      ['Octal', '0' + long.toString(8)],
-      ['Binary', parts.map(p => toBin(p)).join('.')],
-      ['Hex Bytes', parts.map(p => '0x' + p.toString(16).toUpperCase().padStart(2, '0')).join(' ')],
-      ['Reverse DNS', [...parts].reverse().join('.') + '.in-addr.arpa'],
+      [I18n.t('resultLabels.dottedDecimal', 'Dotted Decimal'), ip, true],
+      [I18n.t('resultLabels.decimal32', 'Decimal (32-bit)'), long.toString()],
+      [I18n.t('resultLabels.hexadecimal', 'Hexadecimal'), '0x' + long.toString(16).toUpperCase().padStart(8, '0')],
+      [I18n.t('resultLabels.octal', 'Octal'), '0' + long.toString(8)],
+      [I18n.t('resultLabels.binary', 'Binary'), parts.map(p => toBin(p)).join('.')],
+      [I18n.t('resultLabels.hexBytes', 'Hex Bytes'), parts.map(p => '0x' + p.toString(16).toUpperCase().padStart(2, '0')).join(' ')],
+      [I18n.t('resultLabels.reverseDNS', 'Reverse DNS'), [...parts].reverse().join('.') + '.in-addr.arpa'],
     ];
 
     // Check if it's a private/reserved range
     const type = getIPType(ip);
-    if (type) rows.push(['Type', type]);
+    if (type) rows.push([I18n.t('resultLabels.type', 'Type'), type]);
 
     showRows('convertResult', rows);
   };
@@ -259,13 +286,13 @@ function initCIDR() {
 
   const run = () => {
     const val = input.value.trim();
-    if (!val.includes('/')) { showError('cidrResult', 'Format: 10.0.0.0/30'); return; }
+    if (!val.includes('/')) { showError('cidrResult', I18n.t('messages.formatCIDR')); return; }
 
     const [ip, prefixStr] = val.split('/');
     const prefix = parseInt(prefixStr, 10);
 
     if (!isValidIPv4(ip) || isNaN(prefix) || prefix < 24 || prefix > 32) {
-      showError('cidrResult', 'Supported range: /24 to /32 (for listing IPs)');
+      showError('cidrResult', I18n.t('messages.rangeSupported'));
       return;
     }
 
@@ -274,7 +301,7 @@ function initCIDR() {
     const total = Math.pow(2, 32 - prefix);
 
     if (total > 256) {
-      showError('cidrResult', `${total} IPs — too many to list. Use /25 or smaller.`);
+      showError('cidrResult', `${total}${I18n.t('messages.tooManyIPs')}`);
       return;
     }
 
@@ -283,15 +310,15 @@ function initCIDR() {
       ips.push(longToIp(network + i));
     }
 
-    let html = `<div class="row"><span class="label">Range</span><span class="value accent-val">${longToIp(network)}/${prefix}</span></div>`;
-    html += `<div class="row"><span class="label">Count</span><span class="value">${total} IPs</span></div>`;
+    let html = `<div class="row"><span class="label">${I18n.t('resultLabels.range', 'Range')}</span><span class="value accent-val">${longToIp(network)}/${prefix}</span></div>`;
+    html += `<div class="row"><span class="label">${I18n.t('resultLabels.count', 'Count')}</span><span class="value">${total} IPs</span></div>`;
     html += `<div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(30,41,59,0.5)">`;
     if (total <= 32) {
       html += ips.map(ip => `<div style="font-family:var(--mono);font-size:0.8rem;padding:3px 0;color:var(--text-dim)">${ip}</div>`).join('');
     } else {
       html += `<div style="font-family:var(--mono);font-size:0.8rem;color:var(--text-dim)">`;
       html += `${ips[0]} — ${ips[ips.length - 1]}</div>`;
-      html += `<div style="color:var(--text-muted);font-size:0.75rem;margin-top:8px">First & last shown (${total} total)</div>`;
+      html += `<div style="color:var(--text-muted);font-size:0.75rem;margin-top:8px">${I18n.t('messages.firstLastShown')}${total}${I18n.t('messages.total')}</div>`;
     }
     html += '</div>';
 
@@ -375,7 +402,7 @@ function initPorts() {
 
   const run = () => {
     const q = input.value.trim().toLowerCase();
-    if (!q) { showError('portResult', 'Enter a port number or service name'); return; }
+    if (!q) { showError('portResult', I18n.t('messages.enterPort')); return; }
 
     let results;
     if (/^\d+$/.test(q)) {
@@ -385,7 +412,7 @@ function initPorts() {
     }
 
     if (results.length === 0) {
-      showError('portResult', 'No matches found');
+      showError('portResult', I18n.t('messages.noMatches'));
       return;
     }
 
@@ -404,11 +431,11 @@ function initPing() {
 
   const run = async () => {
     let url = input.value.trim();
-    if (!url) { showError('pingResult', 'Enter a domain or URL'); return; }
+    if (!url) { showError('pingResult', I18n.t('messages.enterDomain')); return; }
 
     if (!url.startsWith('http')) url = 'https://' + url;
 
-    showResult('pingResult', '<div class="spinner"></div> Testing...');
+    showResult('pingResult', `<div class="spinner"></div> ${I18n.t('messages.testing')}`);
     btn.disabled = true;
 
     const rounds = 3;
@@ -432,7 +459,7 @@ function initPing() {
 
     const valid = results.filter(r => r >= 0);
     if (valid.length === 0) {
-      showError('pingResult', 'All requests failed. Check the URL.');
+      showError('pingResult', I18n.t('messages.allRequestsFailed'));
       btn.disabled = false;
       return;
     }
@@ -443,12 +470,12 @@ function initPing() {
 
     let html = '';
     results.forEach((ms, i) => {
-      html += `<div class="row"><span class="label">Round ${i + 1}</span><span class="value${ms < 0 ? '' : ''}">${ms < 0 ? 'Failed' : ms + ' ms'}</span></div>`;
+      html += `<div class="row"><span class="label">${I18n.t('messages.round', 'Round')} ${i + 1}</span><span class="value">${ms < 0 ? I18n.t('messages.failed', 'Failed') : ms + ' ms'}</span></div>`;
     });
-    html += `<div class="row"><span class="label">Min</span><span class="value accent-val">${min} ms</span></div>`;
-    html += `<div class="row"><span class="label">Avg</span><span class="value accent-val">${avg} ms</span></div>`;
-    html += `<div class="row"><span class="label">Max</span><span class="value accent-val">${max} ms</span></div>`;
-    html += `<div style="margin-top:8px;color:var(--text-muted);font-size:0.75rem">⚠ HTTP latency (includes server response), not ICMP ping</div>`;
+    html += `<div class="row"><span class="label">${I18n.t('messages.min', 'Min')}</span><span class="value accent-val">${min} ms</span></div>`;
+    html += `<div class="row"><span class="label">${I18n.t('messages.avg', 'Avg')}</span><span class="value accent-val">${avg} ms</span></div>`;
+    html += `<div class="row"><span class="label">${I18n.t('messages.max', 'Max')}</span><span class="value accent-val">${max} ms</span></div>`;
+    html += `<div style="margin-top:8px;color:var(--text-muted);font-size:0.75rem">${I18n.t('messages.httpLatencyNote')}</div>`;
 
     showResult('pingResult', html);
     btn.disabled = false;

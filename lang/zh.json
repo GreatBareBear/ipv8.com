@@ -1,0 +1,134 @@
+{
+  "meta": {
+    "title": "ipv8 — IP工具与实用程序",
+    "description": "免费在线IP工具：IP查询、子网计算器、IPv4/IPv6转换器、二进制/十六进制转换器、端口查询等。"
+  },
+  "nav": {
+    "tools": "工具",
+    "about": "关于",
+    "lang": "EN"
+  },
+  "hero": {
+    "badge": "免费IP工具",
+    "title": "您的IP地址",
+    "detecting": "检测中...",
+    "unknown": "未知",
+    "unableDetect": "无法检测",
+    "location": "位置",
+    "isp": "运营商",
+    "country": "国家",
+    "copySuccess": "已复制"
+  },
+  "tools": {
+    "title": "网络工具",
+    "subtitle": "网络工程师和开发者的必备工具",
+    "ipLookup": {
+      "title": "IP查询",
+      "desc": "获取任意IP地址的地理位置、运营商和网络信息",
+      "placeholder": "例如 8.8.8.8",
+      "btn": "查询"
+    },
+    "subnet": {
+      "title": "子网计算器",
+      "desc": "计算网络地址、广播地址、主机范围等",
+      "placeholder": "例如 192.168.1.0/24",
+      "btn": "计算"
+    },
+    "converter": {
+      "title": "IP转换器",
+      "desc": "在十进制、二进制、十六进制表示之间转换",
+      "placeholder": "例如 192.168.1.1",
+      "btn": "转换"
+    },
+    "cidr": {
+      "title": "CIDR范围",
+      "desc": "列出CIDR范围内的所有IP或查找范围重叠",
+      "placeholder": "例如 10.0.0.0/30",
+      "btn": "展开"
+    },
+    "port": {
+      "title": "端口查询",
+      "desc": "搜索常用网络端口及其服务",
+      "placeholder": "例如 443 或 SSH",
+      "btn": "搜索"
+    },
+    "latency": {
+      "title": "HTTP延迟",
+      "desc": "测量从浏览器到任意URL的HTTP响应时间",
+      "placeholder": "例如 google.com",
+      "btn": "测试"
+    }
+  },
+  "about": {
+    "title_prefix": "关于",
+    "desc": "免费、快速、尊重隐私的网络工具。无追踪、无广告、无需注册。为需要高效工作的工程师打造。",
+    "toolsLabel": "工具",
+    "adsLabel": "广告",
+    "trackersLabel": "追踪器",
+    "freeLabel": "免费"
+  },
+  "footer": {
+    "copy": "© 2026 ipv8.com — 所有工具在您的浏览器中运行"
+  },
+  "banner": {
+    "domainSale": "🌐 ipv8.com 域名出售",
+    "inquire": "联系咨询",
+    "close": "关闭"
+  },
+  "messages": {
+    "pleaseEnterIP": "请输入IP地址",
+    "invalidIPv4": "无效的IPv4地址",
+    "querying": "查询中...",
+    "requestFailed": "请求失败，请重试",
+    "formatSubnet": "格式：192.168.1.0/24",
+    "formatCIDR": "格式：10.0.0.0/30",
+    "rangeSupported": "支持范围：/24 到 /32",
+    "tooManyIPs": "个IP - 数量过多，请使用 /25 或更小范围",
+    "enterPort": "请输入端口号或服务名称",
+    "noMatches": "未找到匹配项",
+    "enterDomain": "请输入域名或URL",
+    "allRequestsFailed": "所有请求失败，请检查URL",
+    "httpLatencyNote": "HTTP延迟（包含服务器响应），非ICMP ping",
+    "testing": "测试中...",
+    "failed": "失败",
+    "round": "轮次",
+    "min": "最小",
+    "avg": "平均",
+    "max": "最大",
+    "firstLastShown": "显示首尾地址（共",
+    "total": "个）"
+  },
+  "resultLabels": {
+    "ip": "IP",
+    "country": "国家",
+    "region": "地区",
+    "city": "城市",
+    "postal": "邮编",
+    "latitude": "纬度",
+    "longitude": "经度",
+    "timezone": "时区",
+    "ispOrg": "运营商/组织",
+    "asn": "ASN",
+    "cidrNotation": "CIDR表示",
+    "subnetMask": "子网掩码",
+    "wildcardMask": "通配符掩码",
+    "networkAddress": "网络地址",
+    "broadcastAddress": "广播地址",
+    "firstHost": "首个主机",
+    "lastHost": "末尾主机",
+    "totalHosts": "总主机数",
+    "usableHosts": "可用主机数",
+    "ipClass": "IP类别",
+    "binaryMask": "二进制掩码",
+    "dottedDecimal": "点分十进制",
+    "decimal32": "十进制(32位)",
+    "hexadecimal": "十六进制",
+    "octal": "八进制",
+    "binary": "二进制",
+    "hexBytes": "十六进制字节",
+    "reverseDNS": "反向DNS",
+    "type": "类型",
+    "range": "范围",
+    "count": "数量"
+  }
+}
